@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://nose.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://emitter.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 100, 100 )
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 250.0
+
+[node name="game" type="Node2D" index="0"]
+
+[node name="nose" type="Area2D" parent="." index="0"]
+
+position = Vector2( 542, 297 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="nose" index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="nostrils" type="CollisionShape2D" parent="nose" index="1"]
+
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="reach" type="CollisionShape2D" parent="nose" index="2"]
+
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="emitter" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 140, 147 )
+
+[node name="emitter2" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 105, 500 )
+wait_time = 2
+
+[connection signal="body_shape_entered" from="nose" to="nose" method="_on_nose_body_shape_entered"]
+
+
