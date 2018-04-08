@@ -6,6 +6,7 @@ export(DIRECTION) var direction = RIGHT
 export(int) var speed = 100
 export(int) var inhalation_effect = 10
 
+var particle_type
 var rotation_factor = randf() * 0.1
 
 func attract_to(target):

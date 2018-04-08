@@ -1,10 +1,11 @@
-extends Area2D
+extends Node2D
 
+enum PARTICLE_TYPE {BLUE, GREEN, PINK}
 const NOSTRILS = 0
 
 func consume(particle):
-	# emit signals to make meters update
 	particle.queue_free()
+	get_tree().call_group("meter", "increase", particle.particle_type)
 
 func inhale():
 	for body in get_overlapping_bodies():
