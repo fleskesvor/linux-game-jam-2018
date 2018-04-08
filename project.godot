@@ -11,6 +11,7 @@ config_version=3
 [application]
 
 config/name="Linux Game Jam 2018"
+run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
 [input]
@@ -26,4 +27,5 @@ exhale=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":""
 
 [rendering]
 
+environment/default_clear_color=Color( 0.431373, 0.592157, 0.701961, 1 )
 environment/default_environment="res://default_env.tres"

@@ -6,6 +6,8 @@ export(DIRECTION) var direction = RIGHT
 export(int) var speed = 100
 export(int) var inhalation_effect = 10
 
+var rotation_factor = randf() * 0.1
+
 func attract_to(target):
 	# TODO: Attraction should be inversely proportional to distance from nostrils
 	var vec = target - position
@@ -18,6 +20,9 @@ func repel_from(target):
 	position -= vec * inhalation_effect
 
 func _process(delta):
+	
+	set_rotation(get_rotation() + rotation_factor)
+	
 	if direction == LEFT:
 		position.x -= delta * speed
 	else:
