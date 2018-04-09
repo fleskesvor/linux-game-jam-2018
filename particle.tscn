@@ -18,7 +18,6 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 direction = 1
 speed = 100
-inhalation_effect = 10
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

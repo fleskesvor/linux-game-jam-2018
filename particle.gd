@@ -2,23 +2,23 @@ extends KinematicBody2D
 
 enum DIRECTION {LEFT, RIGHT}
 export(DIRECTION) var direction = RIGHT
-# TODO: Should be calculated based on "weight" instead
 export(int) var speed = 100
-export(int) var inhalation_effect = 10
+# TODO: Particle should have a "weight" which factors into attraction force
 
 var particle_type
 var rotation_factor = randf() * 0.1
 
-func attract_to(target):
-	# TODO: Attraction should be inversely proportional to distance from nostrils
+func calculate_diff(target):
 	var vec = target - position
-	vec = vec.normalized()
-	position += vec * inhalation_effect
+	var unit_vec = vec.normalized()
+	var attraction = 3000 / vec.length()
+	return unit_vec * attraction
+
+func attract_to(target):
+	position += calculate_diff(target)
 
 func repel_from(target):
-	var vec = target - position
-	vec = vec.normalized()
-	position -= vec * inhalation_effect
+	position -= calculate_diff(target)
 
 func _process(delta):
 	

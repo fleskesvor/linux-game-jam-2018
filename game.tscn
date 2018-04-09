@@ -8,15 +8,16 @@
 [ext_resource path="res://scripts/emitter.gd" type="Script" id=6]
 [ext_resource path="res://scripts/meter.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=6]
 
 custom_solver_bias = 0.0
-extents = Vector2( 100, 100 )
+radius = 30.0
+height = 50.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 250.0
+points = PoolVector2Array( 0, 0, -150, 250, 150, 250 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 
@@ -127,7 +128,6 @@ texture = ExtResource( 3 )
 
 [node name="nose" type="Area2D" parent="." index="2"]
 
-editor/display_folded = true
 position = Vector2( 513.36, 318.103 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -148,7 +148,7 @@ __meta__ = {
 
 [node name="nostrils" type="CollisionShape2D" parent="nose" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -156,7 +156,9 @@ __meta__ = {
 
 [node name="reach" type="CollisionShape2D" parent="nose" index="2"]
 
+position = Vector2( 0, 40 )
 shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
