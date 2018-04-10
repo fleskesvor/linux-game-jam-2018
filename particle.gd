@@ -8,17 +8,17 @@ export(int) var speed = 100
 var particle_type
 var rotation_factor = randf() * 0.1
 
-func calculate_diff(target):
+func calculate_diff(target, delta):
 	var vec = target - position
 	var unit_vec = vec.normalized()
-	var attraction = 3000 / vec.length()
+	var attraction = 20_000 * delta / vec.length()
 	return unit_vec * attraction
 
-func attract_to(target):
-	position += calculate_diff(target)
+func attract_to(target, delta):
+	position += calculate_diff(target, delta)
 
-func repel_from(target):
-	position -= calculate_diff(target)
+func repel_from(target, delta):
+	position -= calculate_diff(target, delta)
 
 func _process(delta):
 	
