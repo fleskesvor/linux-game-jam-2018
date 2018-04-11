@@ -1,23 +1,111 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://sprites/face.png" type="Texture" id=1]
-[ext_resource path="res://sprites/pupils.png" type="Texture" id=2]
-[ext_resource path="res://nose.gd" type="Script" id=3]
-[ext_resource path="res://sprites/nose.png" type="Texture" id=4]
-[ext_resource path="res://emitter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/game.gd" type="Script" id=1]
+[ext_resource path="res://sprites/face.png" type="Texture" id=2]
+[ext_resource path="res://sprites/pupils.png" type="Texture" id=3]
+[ext_resource path="res://scripts/nose.gd" type="Script" id=4]
+[ext_resource path="res://sprites/nose.png" type="Texture" id=5]
+[ext_resource path="res://scripts/emitter.gd" type="Script" id=6]
+[ext_resource path="res://scripts/meter.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 100, 100 )
-
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 250.0
+radius = 30.0
+height = 50.0
 
-[node name="game" type="Node2D"]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
+custom_solver_bias = 0.0
+points = PoolVector2Array( 0, 0, -150, 250, 150, 250 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.176471, 0.392157, 1, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color( 0.8, 0.8, 0.8, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.372549, 0.784314, 0.392157, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color( 0.8, 0.8, 0.8, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+
+[sub_resource type="StyleBoxFlat" id=5]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.823529, 0.235294, 0.745098, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color( 0.8, 0.8, 0.8, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+
+[node name="game" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
 _sections_unfolded = [ "Material" ]
 
 [node name="face" type="Node2D" parent="." index="0"]
@@ -27,7 +115,7 @@ position = Vector2( 519.187, 274.888 )
 
 [node name="Sprite" type="Sprite" parent="face" index="0"]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="pupils" type="Node2D" parent="." index="1"]
 
@@ -36,11 +124,10 @@ position = Vector2( 515.51, 299.961 )
 
 [node name="Sprite" type="Sprite" parent="pupils" index="0"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="nose" type="Area2D" parent="." index="2"]
 
-editor/display_folded = true
 position = Vector2( 513.36, 318.103 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -49,11 +136,11 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="nose" index="0"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Material", "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -69,20 +156,108 @@ __meta__ = {
 
 [node name="reach" type="CollisionShape2D" parent="nose" index="2"]
 
+position = Vector2( 0, 40 )
 shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="emitter" parent="." index="3" instance=ExtResource( 5 )]
+[node name="emitter" type="Node2D" parent="." index="3"]
 
-position = Vector2( 88.7504, 134.941 )
-_sections_unfolded = [ "Material" ]
+position = Vector2( 114, 152 )
+script = ExtResource( 6 )
+wait_time = 3
 
-[node name="emitter2" parent="." index="4" instance=ExtResource( 5 )]
+[node name="emitter2" type="Node2D" parent="." index="4"]
 
-position = Vector2( 53.7504, 487.941 )
-wait_time = 2
+position = Vector2( 124, 517 )
+script = ExtResource( 6 )
+wait_time = 3
+
+[node name="blue_meter" type="ProgressBar" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 790.0
+margin_top = 30.0
+margin_right = 990.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+custom_styles/fg = SubResource( 3 )
+min_value = 0.0
+max_value = 100.0
+step = 10.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = true
+script = ExtResource( 7 )
+particle_type = 0
+
+[node name="green_meter" type="ProgressBar" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 790.0
+margin_top = 60.0
+margin_right = 990.0
+margin_bottom = 76.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+custom_styles/fg = SubResource( 4 )
+min_value = 0.0
+max_value = 100.0
+step = 10.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = true
+script = ExtResource( 7 )
+particle_type = 1
+
+[node name="pink_meter" type="ProgressBar" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 790.0
+margin_top = 90.0
+margin_right = 990.0
+margin_bottom = 106.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+custom_styles/fg = SubResource( 5 )
+min_value = 0.0
+max_value = 100.0
+step = 10.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = true
+script = ExtResource( 7 )
+particle_type = 2
 
 [connection signal="body_shape_entered" from="nose" to="nose" method="_on_nose_body_shape_entered"]
 
