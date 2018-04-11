@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://sprites/face.png" type="Texture" id=2]
-[ext_resource path="res://sprites/pupils.png" type="Texture" id=3]
-[ext_resource path="res://scripts/nose.gd" type="Script" id=4]
-[ext_resource path="res://sprites/nose.png" type="Texture" id=5]
-[ext_resource path="res://scripts/emitter.gd" type="Script" id=6]
-[ext_resource path="res://scripts/meter.gd" type="Script" id=7]
+[ext_resource path="res://scripts/pupils.gd" type="Script" id=3]
+[ext_resource path="res://sprites/pupils.png" type="Texture" id=4]
+[ext_resource path="res://scripts/nose.gd" type="Script" id=5]
+[ext_resource path="res://sprites/nose.png" type="Texture" id=6]
+[ext_resource path="res://sprites/reach.png" type="Texture" id=7]
+[ext_resource path="res://scripts/emitter.gd" type="Script" id=8]
+[ext_resource path="res://scripts/meter.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -119,12 +121,18 @@ texture = ExtResource( 2 )
 
 [node name="pupils" type="Node2D" parent="." index="1"]
 
-editor/display_folded = true
 position = Vector2( 515.51, 299.961 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+MIN_X = -10
+MAX_X = 10
+MIN_Y = -25
+MAX_Y = 8
 
 [node name="Sprite" type="Sprite" parent="pupils" index="0"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="nose" type="Area2D" parent="." index="2"]
 
@@ -136,11 +144,11 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="nose" index="0"]
 
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 _sections_unfolded = [ "Material", "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -163,16 +171,21 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="ReachSprite" type="Sprite" parent="nose/reach" index="0"]
+
+position = Vector2( -1.47034, 129.906 )
+texture = ExtResource( 7 )
+
 [node name="emitter" type="Node2D" parent="." index="3"]
 
 position = Vector2( 114, 152 )
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 wait_time = 3
 
 [node name="emitter2" type="Node2D" parent="." index="4"]
 
 position = Vector2( 124, 517 )
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 wait_time = 3
 
 [node name="blue_meter" type="ProgressBar" parent="." index="5"]
@@ -186,7 +199,6 @@ margin_top = 30.0
 margin_right = 990.0
 margin_bottom = 46.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -200,7 +212,7 @@ value = 0.0
 exp_edit = false
 rounded = false
 percent_visible = true
-script = ExtResource( 7 )
+script = ExtResource( 9 )
 particle_type = 0
 
 [node name="green_meter" type="ProgressBar" parent="." index="6"]
@@ -214,7 +226,6 @@ margin_top = 60.0
 margin_right = 990.0
 margin_bottom = 76.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -228,7 +239,7 @@ value = 0.0
 exp_edit = false
 rounded = false
 percent_visible = true
-script = ExtResource( 7 )
+script = ExtResource( 9 )
 particle_type = 1
 
 [node name="pink_meter" type="ProgressBar" parent="." index="7"]
@@ -242,7 +253,6 @@ margin_top = 90.0
 margin_right = 990.0
 margin_bottom = 106.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -256,7 +266,7 @@ value = 0.0
 exp_edit = false
 rounded = false
 percent_visible = true
-script = ExtResource( 7 )
+script = ExtResource( 9 )
 particle_type = 2
 
 [connection signal="body_shape_entered" from="nose" to="nose" method="_on_nose_body_shape_entered"]
