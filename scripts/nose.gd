@@ -15,7 +15,6 @@ func set_reach_rotation(rot):
 	$Sprite.rotation = rot
 
 func _input(event):
-	# TODO: Make inhale+exhale work with mouse click+hold
 	if event.is_action("move_left"):
 		set_reach_rotation($reach.rotation + PI / 10)
 	elif event.is_action("move_right"):
@@ -35,6 +34,10 @@ func _input(event):
 	elif event is InputEventMouseMotion:
 		var angle = position.angle_to_point(event.position)
 		set_reach_rotation(angle + PI / 2)
+	elif event is InputEventJoypadMotion:
+		var vector = Vector2(Input.get_joy_axis(0, JOY_ANALOG_LX), Input.get_joy_axis(0, JOY_ANALOG_LY))
+		if vector.length() > 0.3:
+			set_reach_rotation(vector.angle() - PI / 2)
 
 func _process(delta):
 	for body in get_overlapping_bodies():
