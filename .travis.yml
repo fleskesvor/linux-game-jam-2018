@@ -5,10 +5,13 @@ env:
   # Use this to set your game's name. It is being used
   # throughout this file for naming exported artifacts.
   # This will, for example, create an "HareDerLage.exe"
-  - GAME_NAME="LGJ2018"
+  global:
+  - GAME_NAME="overwhelming-odors"
+  - ITCH_IO_USER="flesk"
 
 install:
 - docker pull gamedrivendesign/godot-export
+- wget -q https://dl.itch.ovh/butler/linux-amd64/head/butler && chmod +x butler
 
 # Each of the following lines exports the game for a given platform.
 # You can specify the platform in the EXPORT_NAME variable
@@ -28,6 +31,7 @@ script:
 # This creates zip files from the exported game builds for the
 # three desktop platforms
 before_deploy:
+- zip -j "${GAME_NAME}-html5.zip"   output/html5/*
 - zip -j "${GAME_NAME}-linux.zip"   output/linux/*
 - zip -j "${GAME_NAME}-windows.zip" output/windows/*
 # No need to zip the mac game, because it already is a zip
@@ -41,6 +45,7 @@ deploy:
   skip-cleanup: true
   api_key: $GITHUB_TOKEN
   file:
+    - "${GAME_NAME}-html5.zip"
     - "${GAME_NAME}-linux.zip"
     - "${GAME_NAME}-windows.zip"
     - "${GAME_NAME}-mac.zip"
@@ -49,3 +54,8 @@ deploy:
     # regardless of the branch.
     all_branches: true
     tags: true
+- provider: script
+  script: ./itch-upload.sh
+  skip-cleanup: true
+  on:
+    branch: master
