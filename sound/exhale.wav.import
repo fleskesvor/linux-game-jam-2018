@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/exhale.wav-aaafa03a94239762fbab4a03d28ee09c.sample"
+
+[deps]
+
+source_file="res://sound/exhale.wav"
+source_md5="1b8bc25156cf3c6ce703dcc5b7f3dee6"
+
+dest_files=[ "res://.import/exhale.wav-aaafa03a94239762fbab4a03d28ee09c.sample" ]
+dest_md5="4dd7a7efbc546e8f46f24c06aadc7901"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
