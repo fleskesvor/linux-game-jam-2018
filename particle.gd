@@ -2,9 +2,10 @@ extends KinematicBody2D
 
 enum DIRECTION {LEFT, RIGHT}
 export(DIRECTION) var direction = RIGHT
-export(int) var speed = 100
+
 # TODO: Particle should have a "weight" which factors into attraction force
 
+var speed = 100
 var particle_type
 var rotation_factor = randf() * 0.1
 

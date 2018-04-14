@@ -3,6 +3,8 @@ extends Node2D
 enum PARTICLE_TYPE {BLUE, GREEN, PINK}
 
 onready var particle = preload("res://particle.tscn").instance()
+# Determines by how much particles are scattered vertically from emitter
+export var spread = 120
 var timer
 
 var sprites = {
@@ -26,6 +28,9 @@ func emit_particle():
 	var particle_type = BLUE if rand == 0 else GREEN if rand == 1 else PINK
 
 	clone.position = position
+	# Randomize vertical lane and speed
+	clone.position.y += randi() % spread - spread / 2
+	clone.speed = randi() % 80 + 60
 	clone.particle_type = particle_type
 	clone.get_node("Sprite").texture = sprites[particle_type]
 
