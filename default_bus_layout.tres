@@ -1,0 +1,100 @@
+[gd_resource type="AudioBusLayout" load_steps=6 format=2]
+
+[sub_resource type="AudioEffectBandPassFilter" id=1]
+
+resource_name = "BandPassFilter"
+cutoff_hz = 2000.0
+resonance = 0.5
+gain = 0.5
+db = 0
+
+[sub_resource type="AudioEffectCompressor" id=2]
+
+resource_name = "Compressor"
+threshold = -20.0
+ratio = 4.0
+gain = 0.0
+attack_us = 20.0
+release_ms = 250.0
+mix = 1.0
+sidechain = ""
+
+[sub_resource type="AudioEffectDelay" id=3]
+
+resource_name = "Delay"
+dry = 1.0
+tap1/active = true
+tap1/delay_ms = 250.0
+tap1/level_db = -6.0
+tap1/pan = 0.2
+tap2/active = true
+tap2/delay_ms = 500.0
+tap2/level_db = -12.0
+tap2/pan = -0.4
+feedback/active = false
+feedback/delay_ms = 340.0
+feedback/level_db = -6.0
+feedback/lowpass = 16000.0
+_sections_unfolded = [ "tap1", "tap2" ]
+
+[sub_resource type="AudioEffectReverb" id=4]
+
+resource_name = "Reverb"
+predelay_msec = 150.0
+predelay_feedback = 0.4
+room_size = 0.1
+damping = 0.75
+spread = 1.0
+hipass = 0.0
+dry = 1.0
+wet = 0.5
+
+[sub_resource type="AudioEffectReverb" id=5]
+
+resource_name = "Reverb"
+predelay_msec = 150.0
+predelay_feedback = 0.4
+room_size = 0.1
+damping = 0.75
+spread = 1.0
+hipass = 0.0
+dry = 1.0
+wet = 0.5
+
+[resource]
+
+bus/0/name = "Master"
+bus/0/solo = false
+bus/0/mute = false
+bus/0/bypass_fx = false
+bus/0/volume_db = 0.0
+bus/0/send = ""
+bus/1/name = "Bloops"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = "Master"
+bus/1/effect/0/effect = SubResource( 1 )
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource( 2 )
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource( 3 )
+bus/1/effect/2/enabled = true
+bus/1/effect/3/effect = SubResource( 4 )
+bus/1/effect/3/enabled = true
+bus/2/name = "Music"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = "Master"
+bus/3/name = "Breath"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = -33.5
+bus/3/send = "Master"
+bus/3/effect/0/effect = SubResource( 5 )
+bus/3/effect/0/enabled = true
+

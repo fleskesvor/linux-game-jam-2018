@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bloop01.wav-74eba7a6e71e44c4aee7969c547c1114.sample"
+
+[deps]
+
+source_file="res://sound/bloop01.wav"
+source_md5="6dd03975fb2971ace9bd850029850505"
+
+dest_files=[ "res://.import/bloop01.wav-74eba7a6e71e44c4aee7969c547c1114.sample" ]
+dest_md5="4783cc9bba6bb80410fbaad0e21df20e"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

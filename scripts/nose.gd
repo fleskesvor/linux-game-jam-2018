@@ -7,14 +7,26 @@ var inhale = true
 var nose_inhale_scale = Vector2(1.5, 1.5)
 var update_bodies = false
 
+func play_random_bloop():
+	#todo can probably be implemented in a more efficient way
+	var sound = randi()%3+1
+	if sound == 1:
+		$snd_bloop_01.play()
+	elif sound == 2:
+		$snd_bloop_02.play()
+	elif sound == 3:
+		$snd_bloop_03.play()
+	else:
+		$snd_bloop_01.play()
+
 func consume(particle):
 	particle.queue_free()
 	get_tree().call_group("meter", "increase", particle.particle_type)
+	play_random_bloop()
 
 func set_reach_rotation(rot):
 	# Change rotation of area-of-effect
 	$reach.rotation = rot
-	#$Sprite.rotation = rot
 
 func _input(event):
 	if event.is_action("move_left"):
@@ -24,12 +36,14 @@ func _input(event):
 	elif event.is_action("inhale"):
 		if event.is_pressed():
 			inhale = true
+			$snd_inhale.play()
 			update_bodies = true
 		else:
 			update_bodies = false
 	elif event.is_action("exhale"):
 		if event.is_pressed():
 			inhale = false
+			$snd_exhale.play()
 			update_bodies = true
 		else:
 			update_bodies = false

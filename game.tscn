@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://sprites/face.png" type="Texture" id=2]
@@ -7,9 +7,15 @@
 [ext_resource path="res://scripts/nose.gd" type="Script" id=5]
 [ext_resource path="res://sprites/nose.png" type="Texture" id=6]
 [ext_resource path="res://sprites/reach.png" type="Texture" id=7]
-[ext_resource path="res://scripts/emitter.gd" type="Script" id=8]
-[ext_resource path="res://fonts/font_default.tres" type="DynamicFont" id=9]
-[ext_resource path="res://scripts/meter.gd" type="Script" id=10]
+[ext_resource path="res://sound/bloop01.wav" type="AudioStream" id=8]
+[ext_resource path="res://sound/bloop02.wav" type="AudioStream" id=9]
+[ext_resource path="res://sound/bloop03.wav" type="AudioStream" id=10]
+[ext_resource path="res://sound/inhale.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound/exhale.wav" type="AudioStream" id=12]
+[ext_resource path="res://scripts/emitter.gd" type="Script" id=13]
+[ext_resource path="res://fonts/font_default.tres" type="DynamicFont" id=14]
+[ext_resource path="res://scripts/meter.gd" type="Script" id=15]
+[ext_resource path="res://sound/CongaLoop01.ogg" type="AudioStream" id=16]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -114,7 +120,6 @@ _sections_unfolded = [ "Material" ]
 
 [node name="face" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 position = Vector2( 519.187, 274.888 )
 
 [node name="Sprite" type="Sprite" parent="face" index="0"]
@@ -139,7 +144,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="nose" type="Area2D" parent="." index="2"]
 
-editor/display_folded = true
 position = Vector2( 513.36, 318.103 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -180,16 +184,71 @@ __meta__ = {
 position = Vector2( -1.47034, 129.906 )
 texture = ExtResource( 7 )
 
+[node name="snd_bloop_01" type="AudioStreamPlayer2D" parent="nose" index="3"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Bloops"
+area_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="snd_bloop_02" type="AudioStreamPlayer2D" parent="nose" index="4"]
+
+stream = ExtResource( 9 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Bloops"
+area_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="snd_bloop_03" type="AudioStreamPlayer2D" parent="nose" index="5"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Bloops"
+area_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="snd_inhale" type="AudioStreamPlayer2D" parent="nose" index="6"]
+
+stream = ExtResource( 11 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Breath"
+area_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="snd_exhale" type="AudioStreamPlayer2D" parent="nose" index="7"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Breath"
+area_mask = 1
+_sections_unfolded = [ "Transform" ]
+
 [node name="emitter" type="Node2D" parent="." index="3"]
 
 position = Vector2( 114, 152 )
-script = ExtResource( 8 )
+script = ExtResource( 13 )
 wait_time = 3
 
 [node name="emitter2" type="Node2D" parent="." index="4"]
 
 position = Vector2( 124, 517 )
-script = ExtResource( 8 )
+script = ExtResource( 13 )
 wait_time = 3
 
 [node name="blue_meter" type="ProgressBar" parent="." index="5"]
@@ -208,7 +267,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
 custom_styles/fg = SubResource( 3 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 14 )
 min_value = 0.0
 max_value = 100.0
 step = 10.0
@@ -217,7 +276,7 @@ value = 0.0
 exp_edit = false
 rounded = false
 percent_visible = true
-script = ExtResource( 10 )
+script = ExtResource( 15 )
 _sections_unfolded = [ "Theme", "custom_fonts", "custom_styles" ]
 particle_type = 0
 
@@ -237,7 +296,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
 custom_styles/fg = SubResource( 4 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 14 )
 min_value = 0.0
 max_value = 100.0
 step = 10.0
@@ -246,7 +305,7 @@ value = 0.0
 exp_edit = false
 rounded = false
 percent_visible = true
-script = ExtResource( 10 )
+script = ExtResource( 15 )
 _sections_unfolded = [ "Theme", "custom_fonts", "custom_styles" ]
 particle_type = 1
 
@@ -266,7 +325,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
 custom_styles/fg = SubResource( 5 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 14 )
 min_value = 0.0
 max_value = 100.0
 step = 10.0
@@ -275,12 +334,13 @@ value = 0.0
 exp_edit = false
 rounded = false
 percent_visible = true
-script = ExtResource( 10 )
+script = ExtResource( 15 )
 _sections_unfolded = [ "Theme", "custom_fonts", "custom_styles" ]
 particle_type = 2
 
 [node name="ui_gameover" type="CenterContainer" parent="." index="8"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -410,6 +470,18 @@ group = null
 text = "Quit"
 flat = false
 align = 1
+
+[node name="music_loop" type="AudioStreamPlayer2D" parent="." index="9"]
+
+position = Vector2( 512, 300 )
+stream = ExtResource( 16 )
+volume_db = 0.0
+autoplay = true
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Music"
+area_mask = 1
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="body_shape_entered" from="nose" to="nose" method="_on_nose_body_shape_entered"]
 
