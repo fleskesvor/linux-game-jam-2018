@@ -8,6 +8,7 @@ func filled_meter(type):
 	if filled_meters.size() == count_meters:
 		print("GAME WON!")
 		$ui_gameover.visible = true
+		$ui_gameover/VBoxContainer/HBoxContainer/btn_restart.grab_focus()
 
 func _ready():
 	for child in get_children():
