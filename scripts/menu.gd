@@ -8,3 +8,6 @@ func _on_MB_Credits_pressed():
 
 func _on_MB_Quit_pressed():
 	get_tree().quit()
+
+func _ready():
+	$MB_StartGame.grab_focus()
