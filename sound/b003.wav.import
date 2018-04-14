@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/b003.wav-c3d80f904841d8d9892eee3dc3b932cb.sample"
+
+[deps]
+
+source_file="res://sound/b003.wav"
+source_md5="3953a6642e653c2385f51004904f8484"
+
+dest_files=[ "res://.import/b003.wav-c3d80f904841d8d9892eee3dc3b932cb.sample" ]
+dest_md5="0c6184cc201726cc9f651ac8f93078ee"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

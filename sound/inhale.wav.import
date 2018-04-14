@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/inhale.wav-0f9b15c0612fecfed72f0fddf2754be6.sample"
+
+[deps]
+
+source_file="res://sound/inhale.wav"
+source_md5="bd4855ef4eda451584867e81fc4cafff"
+
+dest_files=[ "res://.import/inhale.wav-0f9b15c0612fecfed72f0fddf2754be6.sample" ]
+dest_md5="1f368833136e2903bdd05bfaa7088b6b"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
