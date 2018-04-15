@@ -28,3 +28,5 @@ The game was developed using a variety of free and open-source source software:
 - [Butler](https://itch.io/docs/butler/) - Itch.io CLI upload tool
 
 Big thanks to [GameDrivenDesign](https://github.com/GameDrivenDesign/docker-godot-export) for making the Docker image we use to export our game to desktop platforms and the web, and release it on GitHub and Itch.io.
+
+Font Grobold by [Guy Buhry](https://www.dafont.com/guy-buhry.d1243)
