@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-#./butler push "${GAME_NAME}-html5.zip" "${ITCH_IO_USER}/${GAME_NAME}:html5"
-#./butler push "${GAME_NAME}-linux.zip" "${ITCH_IO_USER}/${GAME_NAME}:linux"
-./gjpush -t $GAMEJOLT_API_TOKEN -g $GAMEJOLT_GAME_ID -p $GAMEJOLT_PACKAGE -r mac -v 0.42.0 "${GAME_NAME}-mac.zip"
-#./butler push "${GAME_NAME}-windows.zip" "${ITCH_IO_USER}/${GAME_NAME}:windows"
+# Note: Since GameJolt release tags use semver, replace $TRAVIS_TAG with a valid version if not built from a Git tag.
+
+./gjpush -t $GAMEJOLT_API_TOKEN -g $GAMEJOLT_GAME_ID -p $GAMEJOLT_PACKAGE -r $TRAVIS_TAG -b "${GAME_NAME}-html5.zip"
+./gjpush -t $GAMEJOLT_API_TOKEN -g $GAMEJOLT_GAME_ID -p $GAMEJOLT_PACKAGE -r $TRAVIS_TAG "${GAME_NAME}-linux.zip"
+./gjpush -t $GAMEJOLT_API_TOKEN -g $GAMEJOLT_GAME_ID -p $GAMEJOLT_PACKAGE -r $TRAVIS_TAG "${GAME_NAME}-mac.zip"
+./gjpush -t $GAMEJOLT_API_TOKEN -g $GAMEJOLT_GAME_ID -p $GAMEJOLT_PACKAGE -r $TRAVIS_TAG "${GAME_NAME}-windows.zip"
