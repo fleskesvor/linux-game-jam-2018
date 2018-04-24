@@ -8,10 +8,13 @@ env:
   global:
   - GAME_NAME="overwhelming-odors"
   - ITCH_IO_USER="flesk"
+  - GAMEJOLT_GAME_ID=334334
+  - GAMEJOLT_PACKAGE=351065
 
 install:
 - docker pull gamedrivendesign/godot-export
 - wget -q https://dl.itch.ovh/butler/linux-amd64/head/butler && chmod +x butler
+- wget -q -O gjpush.zip https://github.com/gamejolt/cli/releases/download/v0.1.0/linux.zip && unzip gjpush.zip && chmod +x gjpush
 
 # Each of the following lines exports the game for a given platform.
 # You can specify the platform in the EXPORT_NAME variable
@@ -38,9 +41,9 @@ before_deploy:
 - cp -R output/mac/* .
 
 deploy:
-# The following block is responsible to upload the zip files
-# created above to GitHub Releases whenever a new git tag
-# is created.
+# The following blocks are responsible for uploading the zip files
+# created above to GitHub Releases, Itch.io and GameJolt.com
+# whenever a new git tag is created.
 - provider: releases
   skip-cleanup: true
   api_key: $GITHUB_TOKEN
@@ -58,4 +61,11 @@ deploy:
   script: ./itch-upload.sh
   skip-cleanup: true
   on:
-    branch: master
+    all_branches: true
+    tags: true
+- provider: script
+  script: ./gamejolt-upload.sh
+  skip-cleanup: true
+  on:
+    all_branches: true
+    tags: true
